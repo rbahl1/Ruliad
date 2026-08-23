@@ -1,0 +1,60 @@
+The code in this project is a compiler and executor for a novel programming language, whose rules shall be described in this paper. The language, despite being imperative, is not statically typed, and does not have the ability to support types. However, it retains its universality due to the ability to implement any other programming language on it (via constructing suitable isomorphisms between code structures and integers),
+
+A piece of code in the language consists solely of a series of lines, or a script. Like most major programming languages, the script contains a set of functions. Each function has a starting line, and ending line. The program is executed by executing subsequent lines within a function.
+
+A correctly written program, along the rules described within the document, is guaranteed to execute correctly. However, an improperly written function will result in abnormal and unspecified behaviour. Only some times will the program deliver a compilation error, other times it will fail to stop executing, or produce abnormal results.
+
+This language is also recursively enumerable and turing-complete, meaning it follows the Church-Turing thesis. Given enough time and processing power, it is possible to simulate any major programming language (Java, Python, C(++), Assembly, Rust, etc.).
+
+Rules:
+
+Variables:
+
+A variable is a fundamental component of the programming language. In this language, a variable is composed of a name and value. The name can be a valid string, but not a number, and the value can be any number.
+
+There are three ways to create/update a variable
+The assignment is conducted with the ‘→‘ symbol, which may be written as ‘-->’ in the text editor.
+By assigning a value to it: In this case, the variable name - value pairs are table
+(Ex. ‘a → 5’)
+By assigning another variable to it. The value of the other variable is set to this variable’s value. Since a variable cannot be used before it is defined, no circular references occur.
+(Ex. ‘a → b’)
+By assigning it to a function call (explained later). The function call’s return variable’s value is assigned to this variable.
+(Ex. ‘a → +(b,c,)’)
+
+Every variable implicitly has a value associated with it. The default value is zero
+The scope of the variable is defined to be the only locations, which are in the variable’s enclosing function, that can access it. The scope of the variable is restricted to all subsequent lines in the smallest if statement it resides in (the smallest statement is defined to be a function if the variable is not contained in any if statement).
+
+Once a variable has been created, it is possible to update it, described as above.
+
+Functions:
+
+A function is a key component of the programming language. It consists of a starting line, containing the definition and argument names, and ending line, which consists of a particular series of characters denoting the function ending. Between these two lines is a body, which can contain any type of code except another function definition.
+
+Every function has an associated variable table. When it is called with particular arguments, the variable table is set to those argument names and values (actually, it first matches them to ensure compatibility with the new names). Then, as the body is executed line by line, the variable table is updated appropriately. When a return statement is executed, the specified variable is retrieved from the table, and its value is returned.
+
+A function always begins with ‘S|’ which are on the same line as the defining line, and ends with a lone ‘|E’, which designates the ending line. Thus, a function definition is written as: S|name(arg1,arg2,...,argn,). [S|] is the starting indicator, [name] is the function name, which cannot be numeric or start with a number, and [argn] is an argument name (what the function may or may not use). EVERY argument variable name, including the last one, must be followed by a comma, both in a definition and function call.
+
+All function names in the script must have a unique name, otherwise unspecified behavior may happen (no guarantees on program consistency and successful execution). Furthermore, a function cannot have another function defined in it; Nested functions are illegal.
+
+A function is executed in sequential order, line by consecutive line, as dictated by the control structures located there. However, when a return statement is reached, the function must terminate and return the specified variable.
+
+The language has a set of special functions. These cannot be the name of any other function in the script, and are recognized by all compilers. Some of these are ‘fundamental operations’, while others are frequently used functions replaced by a symbol. These include the basic arithmetic operators (+, -, x, /), some more complicated ones (%, ^) and widely used functions (~, =, #, _). A function has the following structure:
+variableName --> functionName(arg1,arg2,...argn,) where the last argument must also be followed by a comma.
+
+
+Return statements:
+
+A return statement designates the final return value of the function. Only one variable may be returned in any statement, and no line will be executed once the first return statement has been. If a function does not contain a return statement, an error will occur.
+
+A return statement is of the form R variable where ‘variable’ is either a number or a variable name contained in the function. The statement will return a number corresponding to the variable name, or a number itself.
+
+Print statements:
+
+A print statement is written in the following manner:[P name], where name designates the variable name or a number.
+
+If statements:
+
+An If statement is composed of a starting instruction, ending instruction, and code body. Like with function definitions, it is possible to nest other line types except function definitions.
+The starting instruction is denoted by 'I|' and is followed by a variable name in the following line. It ends with a sole '|J' instruction in the last line, Contrary to most programming languages, the body is executed iff (if and only if) the specified variable evalutates to zero.
+
+It is possible to have nested if statements (if statement inside another), except the brackets must be balanced (there cannot be an imbalance of starting or ending braces.)
