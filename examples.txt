@@ -1,0 +1,135 @@
+Demonstrating some aspects of the programming language (variable assignments, function calls, if statements, print and return)
+
+1. Introductory program 
+
+### START OF CODE ###
+
+;S|main()
+        ;\Comment for the main function
+        ;a --> 1
+        ;b --> a
+        ;P a
+        ;P 5
+        ;res --> +(3,3,)
+        ;res --> other(1,1,)
+        ;R res
+;|E
+;S|other(b,c,)
+        ;\Adds two args, determines whether sum is two
+        ;fin --> +(b,c,)
+        ;equals --> =(fin,2,)
+        ;\If the sum is two, print 1111
+        ;I|equals
+                ;P 1111
+        ;|J
+        ;\Return the sum
+        ;R fin
+;|E
+
+### END OF CODE ###
+
+2. Code for Collatz conjecture:
+
+### START OF CODE ###
+
+;S|main()
+  ;numTimes --> #(0,0,)
+  ;res --> collatz(numTimes,)
+  ;R res
+;|E
+;S|collatz(numTimes,)
+  ;isZero --> =(numTimes,0,)
+  ;I|isZero
+    ;R 0
+  ;|J
+  ;value --> #(0,0,)
+  ;value --> $(value,1,)
+  ;numSteps --> collatzDeep(value,0,)
+  ;P numSteps
+  ;numTimes --> -(numTimes,1,)
+  ;val --> collatz(numTimes,)
+  ;R val
+;|E
+;S|collatzDeep(value,ctr,)
+  ;P value
+  ;isOne --> =(value,1,)
+  ;I|isOne
+    ;R ctr
+  ;|J
+  ;valueIsOdd --> %(value,2,)
+  ;valueIsOdd --> =(valueIsOdd,1,)
+  ;I|valueIsOdd
+    ;value --> *(3,value,)
+    ;value --> +(value,1,)
+    ;ctr --> +(ctr,1,)
+  ;|J
+  ;\The value must be an even number
+  ;value --> /(value,2,)
+  ;\Round down to preserve it as integer
+  ;value --> $(value,1,)
+  ;ctr --> +(ctr,1,)
+  ;times --> collatzDeep(value,ctr,)
+  ;R times
+;|E
+
+### END OF CODE ###
+
+3. Ackermann function (test of recursion performance):
+
+### START OF CODE ###
+
+;S|main()
+  ;a --> #(0,0,)
+  ;b --> #(0,0,)
+  ;res --> ack(a,b,)
+  ;R res
+;|E
+;S|ack(x,y,)
+  ;P x
+  ;P y
+  ;isXZero --> =(x,0,)
+  ;I|isXZero
+    ;res --> +(y,1,)
+    ;R res
+  ;|J
+  ;isYZero --> =(y,0,)
+  ;I|isYZero
+    ;mx --> -(x,1,)
+    ;fin --> ack(mx,1,)
+    ;R fin
+  ;|J
+  ;xmo --> -(x,1,)
+  ;ymo --> -(y,1,)
+  ;atmp --> ack(x,ymo,)
+  ;btmp --> ack(xmo,atmp,)
+  ;R btmp
+;|E
+
+### END OF CODE ###
+
+4. Nested if statements
+
+### START OF CODE ###
+
+;S|main()
+        ;a --> 1
+        ;b --> 0
+        ;I|b
+                ;I|b
+                        ;I|a
+                                ;P 47
+                        ;|J
+                        ;I|b
+                                ;P 56
+                        ;|J
+                        ;P 67
+                ;|J
+                ;I|a
+                        ;P 2567
+                ;|J
+        ;|J
+        ;R a
+;|E
+
+### END OF CODE ###
+
