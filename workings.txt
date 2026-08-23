@@ -1,0 +1,53 @@
+The program contained in central.py designates the language compiler. There are many possible ways to compile such a language, but the primary approach is casework and delegation. 
+
+The language is primarily composed of a set of functions
+
+Steps to execute a script:
+  1. The script is broken down into different function groupings.
+  2. The 'main' function is searched for - if none is found, the program cannot execute
+  3. Each function maintains a variable table - containing variable names and their values maintained throughout the function.
+  4. The function is executed line by line. If the line is a function call, it delegates to the other function, and completes the execution of the line only once the other function has finished executing.
+  5. When an if statement is reached, a criterion (specified in the statement declaration) is evaluated to zero. If it is not zero, none of the lines in the scope of the statement are executed, otherwise, the lines inside the scope are.
+  6. At a return statement, the function finishes executing, and returns the specified value
+
+Determining balanced if statements:
+
+It is of great importance to determine whether if statements are balanced. There is a simple algorithm to determine this. 
+A simuation of a function stack is also maintained. The purpose of this is to designate the end of if statements
+
+Hence, the pseudocode for evaluation of the program (workings of the compiler) becomes:
+
+main()
+  code = input()
+  result = execute(code)
+  return result
+
+execute(code)
+  function = findFunctionLines('main', code)
+  result = executeScript(function, [], {}, codeBody, False)
+
+executeScript(script, arguments, variabletable, codeBody, inIfstatement)
+  vartable = variabletable
+  script = script[1:-1] # Remove starting and ending defnitions, unnecessary
+  for line in script
+    if line is returnstmt
+      return specifiedval(line)
+    if line is printstmt
+      print(specifiedval(line))
+    if line is variableAssignment
+      varTable[leftvariable] = rightvariaible
+    if line is ifStatement
+      if specifiedval(ifStatement) == 0
+        result = executeScript(scope(ifStatement), [], vartable, codeBody, True)
+        return result
+      else continue over scope(ifStatement)
+    if line is functioncall:
+        
+      varAssigned = assignedTo(functioncall)
+      name = nameOf(functioncall)
+      argumentvalues = argValues(functioncall)
+      if name is specialFunction
+        result = specialFunctionExecute(name, argumentvalues)
+      else
+        result = executeScript(scope(name), argumentvalues, {}, codeBody, False)
+      vartable[varAssigned] = result
