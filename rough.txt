@@ -1,0 +1,596 @@
+Due to the use of match case, this program does not work versions below python 3.10 Hence, to make it work, replace the following code in the 'specialFunction' function:
+
+ # Useful backup code for 'special_function' in case refactored code fails or match-case not valid. Will work for versions less than 3.10
+  # a = firstVar
+  # b = secondVar
+  # if funcName == '~':
+  #   if a > b:
+  #     return 1
+  #   if a == b:
+  #     return 0
+  #   if a < b:
+  #     return -1
+  # if funcName == '+':
+  #   return a + b
+  # if funcName == '-':
+  #   return a - b
+  # if funcName == '*':
+  #   return a * b
+  # if funcName == '/':
+  #   return a / b
+  # if funcName == '%':
+  #   return a % b
+  # if funcName == '^':
+  #   return a**b
+  # if funcName == '=':  # Unlike normal methods which return a BOOLEAN when the two numbers are equal, this is equivalent to taking their differences, and checking whether it equals zero --> 0 corresponds to TRUE and 1 corresponds to FALSE
+
+  #   if a == b:
+  #     return 0
+  #   else:
+  #     return 1
+  # if funcName == '#':  # The two arguments are dummy inputs, they aren't required
+  #   num = input()
+  #   isSpecial = special(num)
+  #   if not isSpecial:
+  #     raise ValueError('Cannot enter string, only number')
+  #   else:
+  #     return isSpecial
+
+  # # In the case an invalid function is inputted, but this should not happen
+  # raise ValueError('Function not special')
+
+# Other replacement code for the 'runscript function'
+
+              # for i in args:
+              #   ctr+=1
+              #   partsmodified = i.strip()
+              #   isSpecial = special(partsmodified)
+              #   if not isSpecial == None:
+              #     argvals[partsmodified +str(ctr)] = isSpecial # Add the necessary variable and placeholder (counter)
+              #   else:
+              #     argvals[partsmodified] = varTable[partsmodified]
+
+# # MY CODE
+# # import sys as s
+# Pseudocode (without descriptions)
+# # states = [0,1,2,3,4]
+# # symbols = [0,1]
+# # tape = [0]*10000
+
+# # transistion = [
+# #   [[1,'R',1],[1,'L',1]],
+# #   [[1,'L',0],[0,'L',2]],
+# #   [[0,'R',4],[1,'L',3]],
+# #   [[1,'R',3],[0,'R',0]],
+# # ]
+
+# # def next(pointer, state, counter):
+# #   print(counter)
+# #   symbol = tape[pointer]
+# #   if state == len(states)-1:
+# #     return counter
+# #   else:
+# #     action = transistion[state][symbol]
+# #     if action[2] == 'H':
+# #       return counter
+# #     to_replace = action[0]
+# #     move_direction = action[1]
+# #     new_state = action[2]
+# #     tape[pointer] = to_replace
+# #     if move_direction == 'L':
+# #       pointer-=1
+# #     if move_direction == 'R':
+# #       pointer+=1
+# #     state = new_state
+# #     next(pointer, state, counter+1)
+
+# # def start():
+# #   result = next(0,states[0],0)
+# #   print(result)
+
+# # if __name__ == '__main__':
+# #   s.setrecursionlimit(10000)
+# #   start()
+
+# class takeinput(string):
+
+#   def __init__():
+#     str = input()
+#     apply(str)
+#     action = input('Select an action: c --> compile, e --> execute')
+#     file, static_error_msg = compiled(str)
+#     if(not static_error_msg == None):
+#       print(static_error_msg)
+#       return
+#     if(action == 'e'):
+#       result, error_msg = execute(file) # Whatever is returned from the main function
+#       if(error):
+#         print(error_msg)
+
+#   def parse(str):
+#     lines = str.split(';')
+#     for i in lines:
+#       if(is_function_definition(i)):
+
+#         function_i = new function(i)
+
+#     var_table = pair()
+
+# def main():
+#   list_code = []
+#   curr_line = ''
+#   while(curr_line!='END'):
+#     line = input()
+#     list_code.append(line)
+#   function_list = compile_to_function(list_code)
+#   args = input()
+#   result = run_functions(function_list, args)
+#   print(result)
+
+# class function():
+
+#   def get_all_functions(code):
+#     broken_lines = code.split(';') # Split all lines, then starting with ';'
+#     list_functions = []
+#     for i in broken_lines:
+#       func = parseFunc(i)
+#       if(func!=None):
+#         list_functions.append(current_function)
+#         current_function = func
+#       current_function.lines.append(i)
+#     return list_functions
+
+#   def parseFunc(line):
+#     line.remove(';')
+#     argument_type_list = []
+#     return_type_list = []
+#     variable_type_list = []
+#     args = line.split('_')
+#     definition = args[0]
+#     name_and_body = args[1]
+#     name = name_and_body.split(' ')
+#     arg_types = definition.split('&')
+#     in_types = arg_types[0]
+#     out_types = arg_types[1]
+#     in_types.remove('[' and ']')
+#     out_types.remove('[' and ']')
+#     in_types = in_types.split(', ')
+#     out_types = out_types.split(', ')
+#     for o in out_types:
+#       return_type_list.append(o)
+#     for i in in_types:
+#       type = i.split(' ')
+#       argument_type_list.append(type[0])
+#       variable_type_list.append(type[1])
+#     return argument_type_list, variable_type_list, return_type_list
+
+#   def execute_until_call(args, func):
+#     var_table = []
+#     for line in func.lines:
+#       las = line.getAssignment()
+#       lif = line.getIfStatement()
+#       lrt = line.getReturnStatement()
+#       if lrt != None:
+#         return lrt.value
+#       if las!=[]:
+#         x, type = result_of_(las)
+#         var_table.append(x, type)
+#       if lif!=None:
+#         if(lif.res)
+#           execute(lif)
+
+#   def execute(expression):
+#     a = expression.list
+#     if a.function == ['NOT', 'AND', 'OR']:
+#       # Execute the not, and, or statements
+#     for l in a:
+#       res = execute()
+
+#   def getAssignment(line):
+#     parts = line.split('=')
+#     varnames = parts[0].split(',')
+#     function_init = parts[1].split('(') # Split into [name] + (arguments)
+#     fname = function_init[0]
+#     fargs = function_init_[1].split(', ') # Split after removing all brackets
+#     ftype = types(function)
+
+# """
+# ;main = [Int n1, String n2, Car n3]{
+#               ;string = toString(n1, n2)
+#               ;concat = concatenate(string, n2)
+#               ;equals = is(n3, concat)
+#               ;equals ? {
+#                   ;result = main(n1, n2, n3)
+#                   [], result
+#               }
+#               [],
+#         }
+
+# """
+
+# """
+# Assignments are computed
+# A --> B, |A| = number of variables returned in B
+# S --> !S
+
+# """
+
+# """
+# Rules:
+#   Function: [str1, str2, ... strn] & [retType1, retType2, ..., retTypen]_name {body}
+#   Function can contain another function;
+#     operations: var_assignment, if statement
+#     If statement --> [Boolean_value]?{action}
+#     Boolean_operators = '![Boolean], [Boolean] & [Boolean]'
+#   Return statment: return a value: <[type_var1, type_var2, ..., type_varn]
+#   Parentheses: (x) is valid, implies (a) independent from (b)
+#   Variable: name, value, type
+#   Variable initialization: [name1, name2, ..., namen] --> function(var1, var2, ..., varn)
+
+#   Execution steps:
+#       The function always begins at main, with a returntype of string, and argument of string
+#       [string] & [string] main{}
+#       Each function has an associated var_table, consisting of all variable assignments; Every time a new variable grouping is executed, it is added to the table.
+
+#       It is also added to the stack, until it finishes executing, then popped off the stack
+# """
+
+# """
+
+# def parse(input):
+#   lines = input.split(';') # Splits input into executable lines beginning with ';'
+#   for line in lines, remove ';' from line
+#   list function_list = new list(0)
+#   for line in lines:
+#     if line is function_definition
+#       function_list.add(line) # Function list prepares properties of the associated function (arguments, types, etc)
+#   # Broken down function list into given values
+#   function_curr = function_list.getFunction('main')
+#   curr_args = # User entered arguments #
+#   function_stack = new stack()
+#   function_stack.add(function_curr)
+#   while not function_stack.isEmpty():
+#     new_function, new_args, has_finished = function_curr.executeUntilCall(curr_args)
+#     if(has_finished):
+#       function_curr = stack.removeTop()
+#       curr_args = new_args
+#     else if(not has_finished):
+#       function_curr = new_function
+#       curr_args = new_args
+#       function_stack.add(function_curr)
+#   result = new_args
+#   print(result)
+
+# class function(name, list(input_types_and_variables), list(output_types), list_executable_lines):
+#   def executeUntilCall(function f):
+#     # Group lines by their position in an if statement
+#     table_of_groups assoc_table = new table(0)
+#     for line in list_executable_lines:
+#       if(line is variable_assign)
+#         assoc_table.add(new variable_group(that corresponding to the variable assignment referenced function))
+#       if(line is if statement)
+#         boolean where_to_go = if_statement_subject_boolean_variable_value
+#         lines_assoc = # Associated lines in if statement #
+#         if(where_to_go)
+#           result = execute/parse(lines_assoc, assoc_table)
+#         if(not where_to_go)
+#           skip(lines_assoc)
+#       if(line is return statement)
+#         return None, assoc_table.get(selected_variables_from_return_statement), true
+#       if(line is function_call)
+#         function new = getfunction(line)
+#         return new, assoc_table, false
+
+# """
+# # Rules
+# #
+# #
+# #
+# #
+
+# import time
+
+# if __name__ == '__main__':
+#   n = int(input('Enter counter number: '))
+#   for i in range(n):
+#     print('\b'+str(i), end = "")
+#     time.sleep(1)
+
+# class Variable:= ,string, & Variable other & Function & True & False & NULL
+# class Function:= [List<Variable>](CodeBody)
+# class VariableAssignment:
+#   [List<Variable>]-->Instruction[List<Variable>]
+#   [Variable] --> Instruction[Function]
+# class Instruction:
+#   V --> Variable assignment (either to NULL or another preexisting variable)
+#   Y --> Type definition
+#   D --> Function definition
+#   A --> Function call
+#   I --> If statement, everything inside it
+#   R --> Return statement
+
+#   T --> True F --> False  N --> Null
+
+# class CodeLine: String
+# class CodeBody: List<CodeLine>
+
+# class compile(CodeBody):
+#   CodeBodyTokenized = tokenize(CodeBody)
+#   startMain = find('main', CodeBodyTokenized)
+# class exec(CodeBodyTokenized, Tree startMain):
+#   for Tree subtree in startMain:
+#     VariableAssignment vs = subtree.getVariableAssignment()
+#     if vs.right.opcode is Function.opcode
+#       varTable.add(vs.tokenize)
+#       if vs.right.opcode is 'D':
+#         Tree funcAddress = vs.right.opcode.getAddress()
+#         result = exec(CodeBody, funcAddress)
+#       if vs.right.opcode is 'R':
+#         var = vs.right.variables
+#         return startMain.result = var
+#       if vs.right.opcode is 'V':
+#         var = vs.right.opcode:
+#         if type(var) == Boolean:
+#           if var:
+#             result = exec(Tree startIf)
+#             return result
+#         else:
+#           pass
+
+# class Tokenizer(CodeBody):
+#   root = new Tree()
+#   UnspecifiedObject uo = currentUnsepcifiedObject
+#   if uo.stack.size == 0 and uo.stacksize0before == True
+#     uo = uo.parent
+#   root.add(uo)
+#   return root
+
+# # Useful datastructures
+
+# class Tree(object):
+#   List<Tree>children
+#   String name
+#   Tree parent
+#   List<String>FormalName
+
+# class Variable(name):
+#   Variable N(NULL), Variable T(TRUE), Variable F(FALSE)
+#   String name
+#   Type type
+#   Variable assignedTo if not assignedTo == this
+#   def getDefiniton(line:VariableAssignment):
+#     list l = []
+#     line.remove('[') and line.remove(']')
+#     parts = line.split(' ,')
+#     for i in parts:  l.append(new Variable(i, NULL))
+#     return l
+
+# class VariableAssignment(line):
+#   List<Variable>variables
+#   Character opcode
+#   UnspecifiedLine ul
+#   CodeBody cb
+#   def break(line):
+#     leftPart = line.split('-->').left
+#     rightPart = line.split('-->').right
+#     List<Variable>vars = Variable.getDefinition(line)
+#     UnspecifiedLine ul = UnspecifiedLine.getBreakdown(rightPart)
+#     return vars, ul
+
+# class Type:
+#   String name
+#   CodeBody scope
+#   Type within
+#   Type FUNCTION
+#   Type TYPE
+#   Type VARIABLE
+#   Type CODEBODY
+#   def getDefinition(line:VariableAssignment):
+#     assert line.right.code == 'Y'
+#     return new Type(line.left) & assert line.left.length == 1
+
+# class UnspecifiedLine(line, opcode):
+#   def getBreakDown(rightPart)
+#     if opcode == 'V'
+#       res = Variable.getDefinition(line)
+#     if opcode == 'Y'
+#       res = Type.getDefinition(line)
+#     if opcode == 'D'
+#       res = Function.getDefinition(line, 'define')
+#     if opcode == 'A'
+#       res = Function.getDefinition(line, 'call')
+#     if opcode == 'I'
+#       res = Ifstatement.getDefinition(line)
+#     if opcode == 'R'
+#       res = Returnstatement.getDefinition(line)
+#     if opcode == 'T': res = Variable.TRUE
+#     if opcode == 'F': res = Variable.FALSE
+#     if opcode == 'N': rest = Variable.NULL
+#     return res, type(res)
+
+# import keyword
+# if __name__ == '__main__':
+#   print(keyword.kwlist)
+#   print(len(keyword.softkwlist))
+
+# SPECIAL_FUNCTIONS = ['+', '-', '*', '/']
+# SPECIAL_VARIABLES = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+
+# def specialFunctionCaseExec(var1, var2, indexInFunction):
+#   if indexInFunction == 0: return var1 + var2
+#   if indexInFunction == 1: return var1 - var2
+#   if indexInFunction == 2: return var1 * var2
+#   if indexInFunction == 3: return var1 / var2
+
+# def exec(function, args):
+#   if function in SPECIAL_FUNCTIONS:
+#     assert len(args)==2:
+#     return specialFunctionCaseExec(args[0], args[1], SPECIAL_FUNCTIONS[function])
+#   else:
+#     return baseExec(function, args)
+
+# def isBalanced(str):
+#   stack = []
+#   parsedFirst = False
+#   for i in str:
+#     if i == '(':
+#       stack.append('(')
+#     if i == ')':
+#       stack.pop()
+#     if len(stack) == 0:
+#         return 'UnBalanced'
+#     parsedFirst = True
+#     print(stack)
+#   if len(stack) == 0:
+#     return 'Balanced'
+#   return 'Unbalanced'
+
+# def breakLines(codeBody): # Breaks the codeBody into different lines around the ';' characters
+#   lineslist = []
+#   curr = []
+#   for i in codeBody:
+#     if i == ';':
+#       currCopy = curr
+#       lineslist.append(currCopy)
+#       print(lineslist)
+#       currCopy = []
+#     else:
+#       curr.append(i)
+#   return lineslist
+
+# def getVarsIn(linelistinstance): # Finds all variable definitions
+#   vardef = ''
+#   restdef = ''
+#   currDef = ''
+#   for i in linelistinstance:
+#     currDef+=i
+#     if i == '=':
+#       vardef = currDef
+#       currDef = ''
+#   restdef = currDef
+#   vardef = vardef[:-1]
+#   vardefList = vardef[1:-1]
+#   return vardefList, restdef
+
+# def getVarListFromAssignment(linelistinstance): # Assign the variables as the following
+#   vardefList, restdef = getVarsIn(linelistinstance)
+#   varnames = []
+#   varCurr = ''
+#   print(vardefList)
+#   for i in vardefList:
+#     if i == ',':
+#       vtmp = varCurr
+#       varnames.append(vtmp)
+#       varCurr = ''
+#     else:
+#       print(varCurr)
+#       varCurr+=i
+#   varnames.append(varCurr)
+#   del varnames[0]
+#   return varnames
+
+# def getdef(restdef): # TODO
+#   # Breaks apart the variable assignment definition, and returns the consitutent type of assignment (other variable assignment, function call/assignment, type definition, etc.)
+#   indexCode = restdef[0]
+#   body = restdef[2:-1]
+#   if indexCode == 'V':
+#     listVars = variableTokenize(body)
+#     return listVars, 'V'
+#   if indexCode == 'Y':
+#     typename = typeTokenize(body)
+#     return typename, 'Y'
+#   if indexCode == 'D':
+#     funcname = functionTokenize(body)
+#     return funcname, 'D'
+#   if indexCode == 'A':
+#     funccall = callTokenize(body)
+#     return funccall, 'A'
+#   if indexCode == 'R':
+#     returnvars = returnTokenize(body)
+#     return returnvars,'R'
+#   return None
+
+# def variableTokenize(body): # Tokenize this variable into many parts
+#   parts = body.split()
+#   assignlist = []
+#   for i in parts:
+#     i = i[1:]
+#     if isVariable(i):
+#       assignlist.append(i)
+#   return assignlist
+
+# def typeTokenize(body): # Tokenize the type body
+#   typename = ''
+#   for i in body:
+#     if i=='(':
+#       return typename
+#     typename+=i
+#   return [].append(typename)
+
+# def isVariable(i):
+#   return True
+
+# def alias(varListOne, varListTwo): # Alias two variables; the assigned name and the assigned value
+#   assert len(varListOne) == len(varListTwo)
+#   pairs = []
+#   for i in range(len(varListOne)):
+#     toAssign = varListOne[i]
+#     assert not isSpecial(toAssign)
+#     pairs.append((toAssign, varListTwo[i]))
+#   return pairs
+
+# def isSpecial(varName): # Whether this variable is in assignable context
+#   for i in varName:
+#     if not i in SPECIAL_VARIABLES: return False
+#   return True
+
+# def getBodyBetween(body, index): # Get all the text between opening and closing brackets in the body
+#   character = body[index]
+#   assert character == '('
+#   stack = ['(']
+#   between = ''
+#   for i in range(index+1, len(body)):
+#     if body[i] == '(':
+#       stack.append(i)
+#     if body[i] == ')':
+#       stack.pop()
+#     if len(stack)==0:
+#       return between
+#     else:
+#       between+=body[i]
+#   if len(stack)==0:
+#     return between
+
+# def formTree(varAssign): # TODO
+#   prog =
+
+# class Node: # The node class
+#   children = []
+#   parent = None
+#   text = ''
+#   def __init_(parent:Node, text:str):
+#     self.parent = parent
+#     self.text = text
+#   def addChild(child:Node):
+#     self.children.append(child)
+
+# class Type: # The type class
+#   codebody:str
+#   name:str
+#   def __init__(self):
+
+# class Variable:
+#   assignedTo:Variable # Every variable is assigned to another variable
+#   name:str
+#   SPECIAL_VALUES = [0:10]
+#   lambda isSpeical(var):
+#     for i in var:
+#       if var[i] not in SPECIAL_VALUES:
+#         return False
+#     return True
+#   type:Type
+
+# def firstIndexOf(text, symbol): # Return the first index of the character in the string
+#   return text.find(symbol)
+
+# START OF USEFUL CODE
