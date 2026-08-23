@@ -1,0 +1,3 @@
+Since the rules of the text-based console input are pretty stringent, here's a sandbox to type in any test programs. Then copy them and paste in the console to run them. 
+
+ENTER YOUR CODE HERE:
